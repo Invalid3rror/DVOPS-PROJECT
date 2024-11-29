@@ -8,14 +8,14 @@ async function readJSON(filename) {
     } catch (err) { console.error(err); throw err; }
 }
 
-async function writeJSON(object, filename) {
-    try {
-        const allObjects = await readJSON(filename);
-        allObjects.push(object);
-        await fs.writeFile(filename, JSON.stringify(allObjects), 'utf8');
-        return allObjects;
-    } catch (err) { console.error(err); throw err; }
-}
+// async function writeJSON(object, filename) {
+//     try {
+//         const allObjects = await readJSON(filename);
+//         allObjects.push(object);
+//         await fs.writeFile(filename, JSON.stringify(allObjects), 'utf8');
+//         return allObjects;
+//     } catch (err) { console.error(err); throw err; }
+// }
 
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -28,6 +28,11 @@ async function editResource(req, res) {
         const title = req.body.title;
         const description = req.body.description;
         const author = req.body.author;
+
+        // Check if required fields are present
+        if (!title || !description || !author) {
+            return res.status(400).json({ message: 'Missing required fields: title, description, or author!' });
+        }
         const allResources = await readJSON('utils/resources.json');
         var modified = false;
         if (!isValidEmail(author)) {
@@ -54,5 +59,5 @@ async function editResource(req, res) {
 }
 
 module.exports = {
-    readJSON, writeJSON, editResource
+    readJSON,  editResource
 }
