@@ -48,7 +48,7 @@ describe('Resource API', () => {
                 });
         });
 
-        it('should return 500 for non-existent resource', (done) => {
+        it('should return 404 for non-existent resource', (done) => {
             chai.request(baseUrl)
                 .put('/edit-resource/invalid-id')  // Using an invalid ID for testing
                 .send({
@@ -57,8 +57,8 @@ describe('Resource API', () => {
                     author: 'nonexistent@example.com'
                 })
                 .end((err, res) => {
-                    expect(res).to.have.status(500);
-                    expect(res.body.message).to.equal('Error occurred, unable to modify!');
+                    expect(res).to.have.status(404);
+                    expect(res.body.message).to.equal('Blog not found!');
                     done();
                 });
         });
@@ -78,16 +78,45 @@ describe('Resource API', () => {
                 });
         });
 
-        it('should return 400 for missing fields', (done) => {
+        it('should return 400 for missing title', (done) => {
             chai.request(baseUrl)
                 .put(`/edit-resource/${resourceId}`)
                 .send({
                     title: '',  // Missing required fields
-                    description: ''
+                    description: 'valid field',
+                    author: 'validfield@exmaple.com'
                 })
                 .end((err, res) => {
                     expect(res).to.have.status(400);
-                    expect(res.body.message).to.include('Missing required fields: title, description, or author!');
+                    expect(res.body.message).to.include('Title is required');
+                    done();
+                });
+        });
+        it('should return 400 for missing description', (done) => {
+            chai.request(baseUrl)
+                .put(`/edit-resource/${resourceId}`)
+                .send({
+                    title: 'valid field',  
+                    description: '',
+                    author: 'validfield@exmaple.com'
+                })
+                .end((err, res) => {
+                    expect(res).to.have.status(400);
+                    expect(res.body.message).to.include('Description is required');
+                    done();
+                });
+        });
+        it('should return 400 for missing author', (done) => {
+            chai.request(baseUrl)
+                .put(`/edit-resource/${resourceId}`)
+                .send({
+                    title: 'valid field',  
+                    description: 'valid field',
+                    author: ''
+                })
+                .end((err, res) => {
+                    expect(res).to.have.status(400);
+                    expect(res.body.message).to.include('Email is required');
                     done();
                 });
         });
