@@ -34,7 +34,7 @@ function displayBlogs(blogs) {
                 <p class="blog-content">${blog.description}</p>
                 <p><strong>Created by:</strong> ${blog.author}</p>
                 <div class="blog-actions">
-                    <button class="blog actions" onclick="editResource(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
+                    <button class="blog actions" id = 'edit-button' onclick="editResource(${JSON.stringify(blog).replace(/"/g, '&quot;')})">
                         <i class="fas fa-wrench"></i>
                     </button>
                     <button class="blog actions" onclick="deleteResource(${blog.id})">
