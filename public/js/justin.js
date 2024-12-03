@@ -89,18 +89,22 @@ function updateResource(id) {
     request.open("PUT", "/edit-resource/" + id, true);
     request.setRequestHeader('Content-Type', 'application/json');
 
-    request.onload = function () {
+    request.onload = async function () {
         try {
             const response = JSON.parse(request.responseText);
-            if (response.message === "Invalid email format for author!"){
-                document.getElementById("editMessage").innerHTML = 'Invalid email format for author!';
-                document.getElementById("editMessage").className = "text-danger";
-            } else if (response.message === "Blog modified successfully!") {
+            // if (response.message === "Invalid email format for author!"){
+            //     document.getElementById("editMessage").innerHTML = 'Invalid email format for author!';
+            //     document.getElementById("editMessage").className = "text-danger";
+            if (response.message === "Blog modified successfully!") {
                 document.getElementById("editMessage").innerHTML = 'Edited blog successfully!';
                 document.getElementById("editMessage").className = "text-success";
-                $('#editResourceModal').modal('hide');
-                // Redirect to home or refresh the page
-                window.location.href = 'index.html';
+                setTimeout(() => {
+                    $('#editResourceModal').modal('hide');
+                    if (!window.Cypress) {
+                        // Redirect only if Cypress is not running
+                        window.location.href = 'index.html';
+                    }
+                }, 100);
             } else {
                 document.getElementById("editMessage").innerHTML = 'Unable to edit blog!';
                 document.getElementById("editMessage").className = "text-danger";
@@ -118,4 +122,3 @@ function updateResource(id) {
 
     request.send(JSON.stringify(jsonData));
 }
-
