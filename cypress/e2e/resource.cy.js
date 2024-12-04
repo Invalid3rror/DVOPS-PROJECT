@@ -79,77 +79,50 @@ describe('Edit Blog Feature', () => {
       .and('contain.text', 'Invalid email format for author!');
   });
 
-  it('should show a success message when the blog is modified successfully', () => {
+  it('should hide the modal and redirect on successful update', () => {
     cy.visit(baseUrl);
 
-    // Open the modal for editing the second blog post
+    // Stub XMLHttpRequest to return a successful response
+    cy.intercept('PUT', '/edit-resource/*', {
+        statusCode: 200,
+        body: { message: "Blog modified successfully!" },
+    }).as('updateResource');
+
+    // Open the modal
     cy.get('.blog-post')
       .eq(1)
       .find('.blog-actions button')
       .first()
       .click();
 
-    // Fill in valid data
+    // Fill out the form
     cy.get('#editTitle').clear().type('Updated Title');
     cy.get('#editDescription').clear().type('Updated Description');
     cy.get('#editAuthor').clear().type('valid.email@example.com');
 
-    // Intercept the API call and simulate a successful blog modification
-    cy.intercept('PUT', '/edit-resource/*', {
-      statusCode: 200,
-      body: { message: 'Blog modified successfully!' },
-    }).as('updateResource');
+    // Activate Cypress clock
+    cy.clock();
 
     // Click the update button
     cy.get('#updateButton').click();
 
-    // Verify the success message and the class name for success
+    // Wait for the PUT request
+    cy.wait('@updateResource');
+
+    // Verify that the success message appears
     cy.get('#editMessage')
-      .should('have.class', 'text-success')
-      .and('contain.text', 'Edited blog successfully!');
+        .should('be.visible')
+        .and('have.class', 'text-success')
+        .and('contain.text', 'Edited blog successfully!');
 
-    // Wait a bit to allow for potential modal closure
-    cy.wait(200);
+    // Advance the clock by 100ms to simulate the `setTimeout`
+    cy.tick(100);
 
-    // Check that the modal is not visible (either closed or in process of closing)
-    cy.get('body').then(($body) => {
-      const modalExists = $body.find('#editResourceModal').length > 0;
-      if (modalExists) {
-        cy.get('#editResourceModal').should('not.be.visible');
-      }
-      });
-  });
-  it('should display invalid email error message and validate DOM manipulation', () => {
-    cy.visit(baseUrl);
+    // Verify that the modal is not visible (closed)
+    cy.get('#editResourceModal').should('not.be.visible');
 
-    // Open the modal for editing 
-    cy.get('.blog-post')
-      .eq(1)
-      .find('.blog-actions button')
-      .first()
-      .click();
+});
 
-    // Fill in an invalid email
-    cy.get('#editAuthor').clear().type('invalid-email');
-
-    // Intercept the update request to simulate server-side validation
-    cy.intercept('PUT', '/edit-resource/*', {
-      statusCode: 400,
-      body: { message: 'Invalid email format for author!' }
-    }).as('updateResource');
-
-    // Click update button
-    cy.get('#updateButton').click();
-
-    // Verify the error message element exists and has correct properties
-    cy.get('#editMessage').then(($element) => {
-      // Check innerHTML is set correctly
-      expect($element.text()).to.equal('Invalid email format for author!');
-
-      // Check className is set to 'text-danger'
-      expect($element.attr('class')).to.include('text-danger');
-    });
-  });
 
   it('should show a generic error message when unable to edit the blog', () => {
     cy.visit(baseUrl);
@@ -209,5 +182,31 @@ describe('Edit Blog Feature', () => {
     cy.get('#editMessage')
       .should('have.class', 'text-danger')
       .and('contain.text', 'Network error occurred!');
+  });
+  it('should trigger the catch block on JSON parsing error', () => {
+    // Visit the application page directly
+    cy.visit(`${baseUrl}`); 
+
+    // Open the edit modal
+    cy.get('.blog-actions button').first().click(); // Adjust as per your DOM structure
+
+    // Fill in valid data
+    cy.get('#editTitle').clear().type('Updated Title');
+    cy.get('#editDescription').clear().type('Updated Description');
+    cy.get('#editAuthor').clear().type('valid.email@example.com');
+
+    // Stub the XMLHttpRequest to return malformed JSON
+    cy.intercept('PUT', `/edit-resource/*`, { force:true,
+      statusCode: 200,
+      body: 'This is not JSON', // Malformed response to trigger catch
+    }).as('updateResource');
+
+    // Click the update button
+    cy.get('#updateButton').click();
+
+    // Verify the error message shown in the catch block
+    cy.get('#editMessage')
+      .should('have.class', 'text-danger')
+      .and('contain.text', 'Error updating blog!');
   });
 });

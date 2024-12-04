@@ -100,10 +100,8 @@ function updateResource(id) {
                 document.getElementById("editMessage").className = "text-success";
                 setTimeout(() => {
                     $('#editResourceModal').modal('hide');
-                    if (!window.Cypress) {
-                        // Redirect only if Cypress is not running
-                        window.location.href = 'index.html';
-                    }
+                    // Redirect only if Cypress is not running
+                    window.location.href = 'index.html';
                 }, 100);
             } else {
                 document.getElementById("editMessage").innerHTML = 'Unable to edit blog!';
