@@ -45,15 +45,15 @@ function createEditModal() {
 // Edit resource function to populate and show the modal
 function editResource(data) {
     // Check if `data` is a string and parse only if necessary
-    var selectedResource = typeof data === "string" ? JSON.parse(data) : data;
+    var selectedResource = data;
 
     // Dynamically create modal if it doesn't exist
     createEditModal();
 
     // Populate the form fields with resource data
-    document.getElementById("editTitle").value = selectedResource.title || '';
-    document.getElementById("editDescription").value = selectedResource.description || '';
-    document.getElementById("editAuthor").value = selectedResource.author || '';
+    document.getElementById("editTitle").value = selectedResource.title;
+    document.getElementById("editDescription").value = selectedResource.description;
+    document.getElementById("editAuthor").value = selectedResource.author;
 
     // Set the update button to call updateResource with the correct ID
     document.getElementById("updateButton").setAttribute("onclick", `updateResource("${selectedResource.id}")`);

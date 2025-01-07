@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.68% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/41</span>
+                <span class='fraction'>40/40</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">90.9% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>15/21</span>
+                <span class='fraction'>10/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.68% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/41</span>
+                <span class='fraction'>40/40</span>
             </div>
         
             
@@ -276,8 +276,8 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -286,25 +286,25 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Function to create and add the modal HTML to the document
 function createEditModal() {
     const modalHTML = `
@@ -352,15 +352,15 @@ function createEditModal() {
 // Edit resource function to populate and show the modal
 function editResource(data) {
     // Check if `data` is a string and parse only if necessary
-    var selectedResource = typeof data === "string" ? <span class="branch-0 cbranch-no" title="branch not covered" >JSON.parse(data) </span>: data;
+    var selectedResource = data;
 &nbsp;
     // Dynamically create modal if it doesn't exist
     createEditModal();
 &nbsp;
     // Populate the form fields with resource data
-    document.getElementById("editTitle").value = selectedResource.title || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
-    document.getElementById("editDescription").value = selectedResource.description || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
-    document.getElementById("editAuthor").value = selectedResource.author || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
+    document.getElementById("editTitle").value = selectedResource.title;
+    document.getElementById("editDescription").value = selectedResource.description;
+    document.getElementById("editAuthor").value = selectedResource.author;
 &nbsp;
     // Set the update button to call updateResource with the correct ID
     document.getElementById("updateButton").setAttribute("onclick", `updateResource("${selectedResource.id}")`);
@@ -407,9 +407,9 @@ function updateResource(id) {
                 document.getElementById("editMessage").className = "text-success";
                 setTimeout(() =&gt; {
                     $('#editResourceModal').modal('hide');
-                    <span class="missing-if-branch" title="if path not taken" >I</span>// Redirect only if Cypress is not running
+                    // Redirect only if Cypress is not running
                     window.location.href = 'index.html';
-                }, 100);<span class="cstat-no" title="statement not covered" ></span>
+                }, 100);
             } else {
                 document.getElementById("editMessage").innerHTML = 'Unable to edit blog!';
                 document.getElementById("editMessage").className = "text-danger";
@@ -422,9 +422,9 @@ function updateResource(id) {
 &nbsp;
     request.onerror = function() {
         document.getElementById("editMessage").innerHTML = 'Network error occurred!';
-        document.getEl<span class="fstat-no" title="function not covered" >em</span>entById("editMessage").className = "text-danger";
-    };<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
+        document.getElementById("editMessage").className = "text-danger";
+    };
+&nbsp;
     request.send(JSON.stringify(jsonData));
 }</pre></td></tr></table></pre>
 
@@ -433,7 +433,7 @@ function updateResource(id) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-05T02:29:06.043Z
+                at 2025-01-07T14:37:55.421Z
             </div>
         <script src="prettify.js"></script>
         <script>
