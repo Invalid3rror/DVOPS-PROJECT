@@ -101,7 +101,6 @@ function updateResource(id) {
                 setTimeout(() => {
                     $('#editResourceModal').modal('hide');
                     // Redirect only if Cypress is not running
-                    window.location.href = 'index.html';
                 }, 100);
             } else {
                 document.getElementById("editMessage").innerHTML = 'Unable to edit blog!';

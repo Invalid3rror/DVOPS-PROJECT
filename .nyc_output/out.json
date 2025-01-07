@@ -972,7 +972,7 @@
           "column": 4
         },
         "end": {
-          "line": 114,
+          "line": 113,
           "column": 6
         }
       },
@@ -982,7 +982,7 @@
           "column": 8
         },
         "end": {
-          "line": 113,
+          "line": 112,
           "column": 9
         }
       },
@@ -1002,7 +1002,7 @@
           "column": 12
         },
         "end": {
-          "line": 109,
+          "line": 108,
           "column": 13
         }
       },
@@ -1032,7 +1032,7 @@
           "column": 16
         },
         "end": {
-          "line": 105,
+          "line": 104,
           "column": 24
         }
       },
@@ -1048,12 +1048,12 @@
       },
       "31": {
         "start": {
-          "line": 104,
-          "column": 20
+          "line": 106,
+          "column": 16
         },
         "end": {
-          "line": 104,
-          "column": 56
+          "line": 106,
+          "column": 90
         }
       },
       "32": {
@@ -1063,17 +1063,17 @@
         },
         "end": {
           "line": 107,
-          "column": 90
+          "column": 81
         }
       },
       "33": {
         "start": {
-          "line": 108,
-          "column": 16
+          "line": 110,
+          "column": 12
         },
         "end": {
-          "line": 108,
-          "column": 81
+          "line": 110,
+          "column": 86
         }
       },
       "34": {
@@ -1083,27 +1083,27 @@
         },
         "end": {
           "line": 111,
-          "column": 86
+          "column": 77
         }
       },
       "35": {
         "start": {
-          "line": 112,
-          "column": 12
+          "line": 115,
+          "column": 4
         },
         "end": {
-          "line": 112,
-          "column": 77
+          "line": 118,
+          "column": 6
         }
       },
       "36": {
         "start": {
           "line": 116,
-          "column": 4
+          "column": 8
         },
         "end": {
-          "line": 119,
-          "column": 6
+          "line": 116,
+          "column": 85
         }
       },
       "37": {
@@ -1113,26 +1113,16 @@
         },
         "end": {
           "line": 117,
-          "column": 85
+          "column": 73
         }
       },
       "38": {
         "start": {
-          "line": 118,
-          "column": 8
-        },
-        "end": {
-          "line": 118,
-          "column": 73
-        }
-      },
-      "39": {
-        "start": {
-          "line": 121,
+          "line": 120,
           "column": 4
         },
         "end": {
-          "line": 121,
+          "line": 120,
           "column": 43
         }
       }
@@ -1204,7 +1194,7 @@
             "column": 28
           },
           "end": {
-            "line": 122,
+            "line": 121,
             "column": 1
           }
         },
@@ -1228,7 +1218,7 @@
             "column": 39
           },
           "end": {
-            "line": 114,
+            "line": 113,
             "column": 5
           }
         },
@@ -1252,7 +1242,7 @@
             "column": 33
           },
           "end": {
-            "line": 105,
+            "line": 104,
             "column": 17
           }
         },
@@ -1262,25 +1252,25 @@
         "name": "(anonymous_5)",
         "decl": {
           "start": {
-            "line": 116,
+            "line": 115,
             "column": 22
           },
           "end": {
-            "line": 116,
+            "line": 115,
             "column": 23
           }
         },
         "loc": {
           "start": {
-            "line": 116,
+            "line": 115,
             "column": 33
           },
           "end": {
-            "line": 119,
+            "line": 118,
             "column": 5
           }
         },
-        "line": 116
+        "line": 115
       }
     },
     "branchMap": {
@@ -1427,7 +1417,7 @@
             "column": 12
           },
           "end": {
-            "line": 109,
+            "line": 108,
             "column": 13
           }
         },
@@ -1439,17 +1429,17 @@
               "column": 12
             },
             "end": {
-              "line": 109,
+              "line": 108,
               "column": 13
             }
           },
           {
             "start": {
-              "line": 106,
+              "line": 105,
               "column": 19
             },
             "end": {
-              "line": 109,
+              "line": 108,
               "column": 13
             }
           }
@@ -1493,11 +1483,10 @@
       "32": 1,
       "33": 1,
       "34": 1,
-      "35": 1,
-      "36": 4,
+      "35": 4,
+      "36": 1,
       "37": 1,
-      "38": 1,
-      "39": 4
+      "38": 4
     },
     "f": {
       "0": 7,
@@ -1531,7 +1520,7 @@
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "8ba7c9432f8ec9a3f6fdbf9a5fa644cd582adfe2"
+    "hash": "124c361542cdc5c15005f1bff847b1c15a53fcfa"
   },
   "C:\\Users\\justi\\OneDrive - Temasek Polytechnic\\year2_sec sem\\DVOPS_Projects\\DVOPS-PROJECT\\public\\js\\alsen.js": {
     "path": "C:\\Users\\justi\\OneDrive - Temasek Polytechnic\\year2_sec sem\\DVOPS_Projects\\DVOPS-PROJECT\\public\\js\\alsen.js",
