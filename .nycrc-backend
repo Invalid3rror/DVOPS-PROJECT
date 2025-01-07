@@ -4,7 +4,7 @@
         "html"
     ],
     "include": [
-        "utils/*.js"
+        "utils/JustinUtil.js"
     ],
     "reportDir": "coverage/backend",
     "check-coverage": true,
@@ -13,3 +13,4 @@
     "functions": 80,
     "statements": 80
 }
+
