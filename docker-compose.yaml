@@ -1,0 +1,9 @@
+services:
+  build-rms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: invalid1649/docker-img:latest
+    container_name: docker-container
+    ports:
+      - "8050:5050"
