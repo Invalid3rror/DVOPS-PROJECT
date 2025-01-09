@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: build-rms-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: build-rms
+  template:
+    metadata:
+      labels:
+        app: build-rms
+    spec:
+      containers:
+      - name: build-rms-container
+        image: invalid1649/docker-img:latest
+        ports:
+        - containerPort: 5050
