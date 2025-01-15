@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: build-rms-container
-        image: invalid1649/docker-img:latest
+        image: invalid1649/docker-img:latestv1
         ports:
         - containerPort: 5050

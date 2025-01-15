@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: invalid1649/docker-img:latest
+    image: invalid1649/docker-img:latestv1
     container_name: docker-container
     ports:
       - "8050:5050"
