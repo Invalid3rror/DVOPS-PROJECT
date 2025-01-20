@@ -1,15 +1,9 @@
 services:
   build-rms:
     build:
-      context: .  # The current directory is where Dockerfile is located
-      dockerfile: Dockerfile  # Ensure this points to your Dockerfile
-    image: invalid1649/docker-img:latestv3  # Name your image here (e.g., my-node-app)
+      context: .
+      dockerfile: Dockerfile
+    image: invalid1649/docker-img:latestv2
     container_name: docker-container
     ports:
-      - "8050:5050"  # Ensure this matches the exposed port
-    restart: always
-    environment:
-environment:
-      NODE_ENV: ${NODE_ENV:-production}
-      PM2_PUBLIC_KEY: ${PM2_PUBLIC_KEY}
-      PM2_SECRET_KEY: ${PM2_SECRET_KEY}
+      - "8050:5050"
