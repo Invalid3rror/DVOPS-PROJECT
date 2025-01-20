@@ -8,9 +8,13 @@ COPY package*.json ./
 RUN npm install
 # Install PM2 globally
 RUN npm install pm2 -g
+# Set PM2 keys for PM2 Plus monitoring (replace these keys with your own)
+ENV PM2_PUBLIC_KEY 
+ENV PM2_SECRET_KEY
 # Bundle app source
 COPY . .
 # Expose the port your app runs on
 EXPOSE 5050
 # Define the command to run your app
 CMD [ "pm2-rumtime", "start", "index.js" ]
+
