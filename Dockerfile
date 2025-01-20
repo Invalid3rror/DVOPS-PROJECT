@@ -6,9 +6,11 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 # Install app dependencies
 RUN npm install
+# Install PM2 globally
+RUN npm install pm2 -g
 # Bundle app source
 COPY . .
 # Expose the port your app runs on
 EXPOSE 5050
 # Define the command to run your app
-CMD [ "node", "index.js" ]
+CMD [ "pm2-rumtime", "start", "index.js" ]

@@ -9,7 +9,12 @@
     "frontend-test": "rmdir -r .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run",
     "frontend-test-chrome": "nyc --nycrc-path .nycrc-frontend cypress run --browser chrome",
     "frontend-test-firefox": "nyc --nycrc-path .nycrc-frontend cypress run --browser firefox",
-    "frontend-test-edge": "nyc --nycrc-path .nycrc-frontend cypress run --browser edge"
+    "frontend-test-edge": "nyc --nycrc-path .nycrc-frontend cypress run --browser edge",
+    "stop": "pm2 stop index.js",
+    "start": "pm2 start index.js --watch",
+    "watch": "pm2 monit"
+
+
   },
   "keywords": [],
   "author": "",
@@ -20,11 +25,9 @@
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
     "express": "^4.21.1",
-    "express-status-monitor": "^1.3.4",
     "fs": "^0.0.1-security",
     "mocha": "^10.8.2",
-    "nyc": "^17.1.0",
-    "winston": "^3.17.0"
+    "nyc": "^17.1.0"
   },
   "devDependencies": {
     "cypress": "^13.16.1"
