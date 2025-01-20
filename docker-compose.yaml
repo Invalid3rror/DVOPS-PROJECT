@@ -9,6 +9,7 @@ services:
       - "8050:5050"  # Ensure this matches the exposed port
     restart: always
     environment:
-      NODE_ENV: ${NODE_ENV}
+environment:
+      NODE_ENV: ${NODE_ENV:-production}
       PM2_PUBLIC_KEY: ${PM2_PUBLIC_KEY}
       PM2_SECRET_KEY: ${PM2_SECRET_KEY}
