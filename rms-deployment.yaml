@@ -17,5 +17,3 @@ spec:
         image: invalid1649/docker-img:latestv2
         ports:
         - containerPort: 5050
-        - containerPort: 9615
-        args: ["pm2-runtime", "start", "ecosystem.config.js", "--web"]
