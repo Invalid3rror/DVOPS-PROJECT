@@ -7,6 +7,11 @@ spec:
   selector:
     app: build-rms
   ports:
-  - protocol: TCP
-    port: 8050        # External port accessible by users
-    targetPort: 5050  # Port inside the container
+  - name: app
+    protocol: TCP
+    port: 8050
+    targetPort: 5050
+  - name: pm2-web
+    protocol: TCP
+    port: 9615        # PM2 web interface external port
+    targetPort: 9615  # PM2 web interface container port
