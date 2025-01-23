@@ -1,27 +1,23 @@
-# Use an official Node.js runtime as a parent image
-FROM node:20
+FROM keymetrics/pm2:latest-alpine
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+# Bundle APP files
+COPY . .
 
 # Install app dependencies
-RUN npm install
-
-# Install PM2 globally
-RUN npm install pm2 -g
-
-# Set PM2 public and secret keys
+ENV NPM_CONFIG_LOGLEVEL warn
 ENV PM2_PUBLIC_KEY z4k8bvoc65w9v9n
 ENV PM2_SECRET_KEY 4gsvhzg2x6x86kb
 
-# Bundle app source
-COPY . .
+RUN npm install --production
 
-# Expose the port your app runs on
+# Expose the listening port of your app
 EXPOSE 5050
 
-# Use pm2-runtime to run your application
-CMD ["pm2-runtime", "index.js"]
+# Show current folder structure in logs
+RUN ls -al -R
+
+# Start with PM2, including web monitoring interface
+CMD ["pm2-runtime", "start", "ecosystem.config.js", "--web"]
