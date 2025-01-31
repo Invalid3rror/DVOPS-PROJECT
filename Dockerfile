@@ -6,7 +6,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 # Install app dependencies
 RUN npm install
-RUN npm install -g pm2
 # Bundle app source
 COPY . .
 # Expose the port your app runs on
