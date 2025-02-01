@@ -11,7 +11,7 @@ app.use(express.static("./public"));
 
 const statusMonitor = require('express-status-monitor');
 app.use(statusMonitor());
-app.get('/status', ensureLoggedIn, statusMonitor.pageRoute)
+app.get('/status', statusMonitor.pageRoute)
 
 
 const { viewBlogs } = require('./utils/BrandenUtil')
